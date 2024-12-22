@@ -214,6 +214,5 @@ ETH_ADDRESS=<Your Ethereum Wallet Address>
 - Make sure the Ethereum client is running and accessible at `http://127.0.0.1:8545`.
 - Replace placeholders like `<repository_url>` and `<Your Ethereum Private Key>` with actual values.
 
-**License**
-This project is licensed under the MIT License. See the LICENSE file for details.
+
 
