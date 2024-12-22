@@ -199,7 +199,7 @@ ETH_ADDRESS=<Your Ethereum Wallet Address>
 1. Place your dataset CSV file in the project directory and update the `file_path` variable in the script.
 2. Run the script:
    ```bash
-   python script.py
+   python connect.py
    ```
 
 **How It Works**
