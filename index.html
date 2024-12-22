@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .alert {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+        }
+        .info {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection Status</h1>
+    <div id="status" class="alert">Waiting for Status...</div>
+
+    <div id="person-info" class="info" style="display: none;">
+        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+        <p><strong>Address:</strong> <span id="address"></span></p>
+        <p><strong>Contact:</strong> <span id="contact"></span></p>
+        <p><strong>Emergency Contact:</strong> <span id="emergency-contact"></span></p>
+    </div>
+
+    <script>
+        var socket = io.connect('http://127.0.0.1:5000');
+
+        socket.on('status_update', function(data) {
+            console.log("Status update received:", data.status);
+            document.getElementById('status').innerText = data.status;
+
+            if (data.person_info) {
+                document.getElementById('person-info').style.display = 'block'; // Show the person info section
+                document.getElementById('name').innerText = data.person_info.name || "N/A";
+                document.getElementById('dob').innerText = data.person_info.dob || "N/A";
+                document.getElementById('address').innerText = data.person_info.address || "N/A";
+                document.getElementById('contact').innerText = data.person_info.contact || "N/A";
+                document.getElementById('emergency-contact').innerText = data.person_info.emergency_contact || "N/A";
+            }
+        });
+    </script>
+</body>
+</html>
